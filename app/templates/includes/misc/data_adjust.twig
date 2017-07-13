@@ -1,0 +1,30 @@
+<h4>Data Adjust</h4>
+<small class="form-text text-muted">Set default Shipping Costs for checked countries</small>
+<div class="input-group form-group">
+    <label class="sr-only" for="defPrice">Set default Shipping Costs for checked countries</label>
+    <div class="input-group-addon">$</div>
+    <input type="text" class="form-control" value="12.50"
+           title="Set default Shipping Costs for checked countries" id="defPrice" name="defPrice" placeholder="Amount"/>
+    <span class="input-group-btn">
+        <button class="btn btn-default" onclick="setDefPrice()" title="Set default Shipping Costs for checked countries" type="button">Apply</button>
+    </span>
+</div>
+<small class="form-text text-muted">Table rates condition</small>
+<div class="form-group">
+    <label class="sr-only" for="carriers_tablerate_condition_name">Table rates condition</label>
+    <select class="form-control" id="carriers_tablerate_condition_name" name="carriers_tablerate_condition_name" onchange="changeLabel()">
+        <option value="weight">Weight vs. Destination</option>
+        <option value="price" selected="selected">Price vs. Destination</option>
+        <option value="qty"># of Items vs. Destination</option>
+    </select>
+</div>
+<small class="form-text text-muted">Set default condition value for checked countries</small>
+<div class="input-group">
+    <label class="sr-only" for="defSubtotal">Set default condition value for checked countries</label>
+    <span class="input-group-addon">$</span>
+    <input type="text" class="form-control" value="0" id="defSubtotal" name="defSubtotal"
+           title="Set default condition value for checked countries" placeholder="Amount"/>
+    <span class="input-group-btn">
+        <button class="btn btn-default" onclick="setDefSubtotal()" title="Set default condition value for checked countries" type="button">Apply</button>
+    </span>
+</div>

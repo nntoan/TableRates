@@ -1,0 +1,79 @@
+{% extends 'template.twig' %}
+
+{% block head %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ base_url() }}{{ path_for('index') }}css/generator.css">
+    <script type="text/javascript" src="{{ base_url() }}{{ path_for('index') }}js/main.js"></script>
+    <script type="text/javascript" src="{{ base_url() }}{{ path_for('index') }}js/data.js"></script>
+{% endblock %}
+
+{% block content %}
+    <form action="{{ path_for('generate') }}" method="post" id="tableRatesForm">
+        <h1>Advanced Magento Table Rates Generator <small>@nntoan</small></h1>
+        {% include 'includes/introduce.twig' %}
+        <div class="row">
+            <div class="col-md-4">
+                {% include 'includes/misc/select_region.twig' %}
+            </div>
+            <div class="col-md-4">
+                {% include 'includes/misc/actions.twig' %}
+            </div>
+            <div class="col-md-4">
+                {% include 'includes/misc/data_adjust.twig' %}
+            </div>
+        </div>
+        <div class="row">
+            <h2>Country Data Lists</h2>
+            <div class="form-group">
+                <div class="table-resposive">
+                    <table class="table table-condensed table-hover" id="tableRates">
+                        <thead>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>Country</th>
+                            <th>Shipping Costs</th>
+                            <th><span id="conditionLabel">From Subtotal</span></th>
+                            <th>&nbsp;</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for country in countries %}
+                            <tr>
+                                <td>
+                                    <input title="{{ country.name }}" type='checkbox' name='country_{{ country.iso2 }}[]'
+                                           value='{{ country.iso3 }}' id='country_{{ country.iso2 }}'/>
+                                </td>
+                                <td><label onclick="checkMe(this)">{{ country.name }}</label></td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-addon">$</span>
+                                        <input class="form-control" title="Price of {{ country.name }}"
+                                               type="text" name="price_{{ country.iso2 }}[]" placeholder="Amount" />
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="input-group">
+                                        <span class="input-group-addon subtotal">$</span>
+                                        <input class="form-control" title="From subtotal of {{ country.name }}"
+                                               type="text" name="from_{{ country.iso2 }}[]" placeholder="Amount"/>
+                                        <span class="input-group-addon weight" style="display: none;">kgs</span>
+                                        <span class="input-group-addon qty" style="display: none;">item(s)</span>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a class="addRow">
+                                        <span class="glyphicon glyphicon-plus addBtn" id="addBtn"></span>
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <button type="submit" id="generateBtn" class="btn btn-primary" data-loading-text="Generating...">
+                    <span>Generate tablerates.csv</span>
+                </button>
+            </div>
+        </div>
+    </form>
+{% endblock %}

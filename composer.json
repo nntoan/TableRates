@@ -1,0 +1,29 @@
+{
+    "name": "nntoan/tablerates",
+    "description": "Magento TableRates Generator",
+    "type": "project",
+    "license": [
+        "OSL-3.0",
+        "AFL-3.0"
+    ],
+    "authors": [
+        {
+            "name": "Toan Nguyen",
+            "email": "destro.nnt@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "slim/slim": "^3.0",
+        "slim/twig-view": "^2.1",
+        "slim/flash": "^0.1.0",
+        "slim/csrf": "^0.3.3",
+        "vlucas/valitron": "^1.2",
+        "monolog/monolog": "^1.13"
+    },
+    "autoload": {
+        "psr-4": {
+            "TableRates\\Generator\\": "app/src/Generator"
+        }
+    }
+}
